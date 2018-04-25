@@ -1,0 +1,5 @@
+.content {
+    background-color: lightcoral;
+    display: flex;
+    flex-grow: 1;
+}
