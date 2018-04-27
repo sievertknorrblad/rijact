@@ -9,6 +9,6 @@ const mainMenu = [
 
 export const Header = () => (
   <div className="header">
-    {mainMenu.map(o => (<a key={o.text} href={o.url}>{o.text}  </a>))}
+    {mainMenu.map(item => (<a key={item.text} href={item.url}>{item.text}  </a>))}
   </div>
 )

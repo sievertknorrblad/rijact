@@ -11,6 +11,6 @@ const additionalMenu = [
 
 export const Footer = () => (
   <div className="footer">
-    {additionalMenu.map(o => (<a key= {o.text} href={o.url}>{o.text}  </a>))}
+    {additionalMenu.map(item => (<a key= {item.text} href={item.url}>{item.text}  </a>))}
   </div>
 )

@@ -2,6 +2,7 @@
   "name": "rijact",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/sievertknorrblad/rijact/",
   "dependencies": {
     "@nordnet/grid": "^1.4.0",
     "react": "^16.3.2",
