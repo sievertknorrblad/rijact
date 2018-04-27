@@ -1,0 +1,6 @@
+.page {
+    flex-direction: column;
+    display: flex;
+    min-height: 100%;
+    padding: 0px 40px 0px 40px;
+}
