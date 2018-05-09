@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { api } from '../../utils';
+import React from 'react';
 import { NewsItem } from '../newsItem';
 import './styles.css'
 

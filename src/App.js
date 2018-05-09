@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NewsItem, NewsItemList, Page, Header, Content, Footer } from './components';
 import { api } from './utils';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
 
