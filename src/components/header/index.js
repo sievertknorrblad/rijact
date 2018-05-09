@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css'
 
 const mainMenu = [
@@ -9,6 +10,9 @@ const mainMenu = [
 
 export const Header = () => (
   <div className="header">
+    <Link to="/">
+      <img src="https://news.ycombinator.com/y18.gif" alt="durov" />
+    </Link>
     {mainMenu.map(item => (<a key={item.text} href={item.url}>{item.text}  </a>))}
   </div>
 )
