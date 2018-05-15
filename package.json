@@ -5,9 +5,12 @@
   "repository": "https://github.com/sievertknorrblad/rijact/",
   "dependencies": {
     "@nordnet/grid": "^1.4.0",
+    "date-fns": "^1.29.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-jss": "^8.4.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
   },
   "scripts": {
