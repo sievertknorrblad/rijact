@@ -1,12 +1,13 @@
 import React from 'react';
-import { api } from '../../utils';
 import { Link } from 'react-router-dom';
 import { distanceInWordsToNow } from 'date-fns';
 import './styles.css'
 
-export const NewsItem = ({id}) => {
+export const NewsItem = ({item}) => {
 
-  const item = api.getItem(id);
+  if (item === undefined) {
+    return <div />
+  }
   const actualTime = item.time * 1000
   return (
     <div className="item-container">
