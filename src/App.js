@@ -12,7 +12,7 @@ class App extends Component {
           <Header />
           <Content>
             <Switch>
-              <Route exact path="/" render={() => <PageNewsList />} />
+              <Route exact path="/" component={PageNewsList} />
               <Route path="/item/:itemId" render={(props) => <NewsItem id={props.match.params.itemId} />} />
             </Switch>
           </Content>

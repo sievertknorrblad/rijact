@@ -11,15 +11,15 @@
 const fetchJson = url => fetch(url).then(res => res.json());
 const first10 = arr => arr.slice(0, 10);
 
+const baseUrl = "https://hacker-news.firebaseio.com/v0/"
+
 export const getItemsIds = () => {
-  return fetchJson('https://hacker-news.firebaseio.com/v0/topstories.json')
-  .then(data => {
-    return Promise.resolve(first10(data))
-  })
+  return fetchJson(`${baseUrl}topstories.json`)
+  .then(data => (first10(data)))
 };
 
 export const getItem = (id) => {
-  return fetchJson(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+  return fetchJson(`${baseUrl}item/${id}.json`)
 }
 
 export default { getItem, getItemsIds };
