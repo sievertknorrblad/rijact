@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsItem } from '../newsItem';
+import { default as NewsItem } from '../newsItem';
 import './styles.css'
 
 export const NewsItemList = ({ids}) => (

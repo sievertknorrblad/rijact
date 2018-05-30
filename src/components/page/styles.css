@@ -4,3 +4,7 @@
     min-height: 100%;
     padding: 0px 40px 0px 40px;
 }
+
+.page-dark {
+    background: #000000;
+  }

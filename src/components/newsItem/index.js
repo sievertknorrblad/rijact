@@ -1,10 +1,12 @@
 import React from 'react';
 import { api } from '../../utils';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { distanceInWordsToNow } from 'date-fns';
+import { toggleTheme } from '../../actions';
 import './styles.css'
 
-export const NewsItem = ({id}) => {
+const NewsItem = ({id}) => {
 
   const item = api.getItem(id);
   const actualTime = item.time * 1000
@@ -27,3 +29,9 @@ export const NewsItem = ({id}) => {
     </div>
   )
 }
+
+const mapDispatchToProps = {
+  toggleTheme,
+};
+
+export default connect(null, mapDispatchToProps)(NewsItem);
