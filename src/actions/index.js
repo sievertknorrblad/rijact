@@ -1,3 +1,5 @@
+import { api } from '../utils';
+
 const requestItemStart = id => ({
     type: 'REQUEST_ITEM_START',
     payload: id,
@@ -16,14 +18,16 @@ const requestItemStart = id => ({
     },
   })
 
-  const requestItemIdsStart = () => ({
+  const requestItemsIdsStart = () => ({
     type: 'REQUEST_ITEM_IDS_START',
   });
-  const requestItemIdsSuccess = itemIds => ({
+
+  const requestItemsIdsSuccess = itemIds => ({
     type: 'REQUEST_ITEM_IDS_SUCCESS',
     payload: itemIds,
   });
-  const requestItemIdsFailure = err => ({
+  
+  const requestItemsIdsFailure = err => ({
     type: 'REQUEST_ITEM_IDS_FAIL',
     payload: err,
   });
@@ -37,4 +41,28 @@ const requestItemStart = id => ({
     payload: value,
   });
 
-  export { requestItemStart, requestItemSuccess, requestItemIdsFailure, requestItemIdsStart, requestItemIdsSuccess, requestItemFailure, toggleTheme, updateItemsToShow };
+  export const fetchItemsIds = () => dispatch => {
+    dispatch(requestItemsIdsStart());
+    api
+      .getItemsIds()
+      .then(itemsIds => {
+        dispatch(requestItemsIdsSuccess(itemsIds));
+      })
+      .catch(err => {
+        dispatch(requestItemsIdsFailure(err));
+      });
+  };
+  
+  export const fetchItem = id => dispatch => {
+    dispatch(requestItemStart(id));
+    api
+      .getItem(id)
+      .then(item => {
+        dispatch(requestItemSuccess(item));
+      })
+      .catch(err => {
+        dispatch(requestItemFailure(id, err));
+      });
+  };
+
+  export { requestItemStart, requestItemSuccess, requestItemsIdsFailure, requestItemsIdsStart, requestItemsIdsSuccess, requestItemFailure, toggleTheme, updateItemsToShow };

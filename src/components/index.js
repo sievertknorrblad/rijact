@@ -4,4 +4,4 @@ export { Content } from './content';
 export { Footer } from './footer';
 export { NewsItemList } from './newsItemList';
 export { default as NewsItem } from './newsItem';
-export { PageNewsList } from './pageNewsList';
+export { default as PageNewsList } from './pageNewsList';

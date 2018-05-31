@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const stringifyErr = err => err.toString();
 
-const itemsToShowReducer = (state = 0, action) => {
+const itemsToShowReducer = (state = 10, action) => {
   switch (action.type) {
     case 'UPDATE_ITEMS_TO_SHOW':
       return action.payload;
@@ -73,7 +73,7 @@ const dataReducer = combineReducers({
 })
 
 const uiReducer = combineReducers({
-  value: itemsToShowReducer,
+  itemsToShow: itemsToShowReducer,
   isDarkTheme: isDarkThemeReducer,
 })
 

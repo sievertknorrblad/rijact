@@ -1,56 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { distanceInWordsToNow } from 'date-fns';
-import { toggleTheme } from '../../actions';
 import './styles.css'
-import { api } from '../../utils';
+import { fetchItem as fetchItemAction } from '../../actions';
 
 class NewsItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      item: {},
-    }
-  }
-
+  
   componentDidMount() {
-    const { id } = this.props
-    api.getItem(id)
-      .then(itemResponse => {
-        this.setState(
-          {
-            item: itemResponse
-          }
-        )
-      })
+    const { fetchItem, id } = this.props
+    fetchItem(id)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.item !== nextState.item
+  shouldComponentUpdate(nextProps) {
+    return this.props.item !== nextProps.item
   }
 
   render() {
-    const { item } = this.state
-
-    if (item === undefined) {
+    const { item } = this.props
+    if (item === undefined || item.isLoading) {
       return <div />
     }
-    const actualTime = item.time * 1000
+    const fetchedItem = item.item
+    const actualTime = fetchedItem.time * 1000
     return (
       <div className="item-container">
-        <a className="title" href={item.url}>
-          {item.title}
+        <a className="title" href={fetchedItem.url}>
+          {fetchedItem.title}
         </a>
         <br />
-        <Link to={`/item/${item.id}`}>
-          {item.score} points
-      </Link>
+        <Link to={`/item/${fetchedItem.id}`}>
+          {fetchedItem.score} points
+        </Link>
         <span> by {item.by} {<time dateTime={new Date(actualTime)}>{distanceInWordsToNow(new Date(actualTime))}</time>} ago | </span>
-        <Link to={`/item/${item.id}`}>
-          {item.descendants === 0
+        <Link to={`/item/${fetchedItem.id}`}>
+          {fetchedItem.descendants === 0
             ? 'discuss'
-            : item.descendants + ' comments'
+            : fetchedItem.descendants + ' comments'
           }
         </Link>
       </div>
@@ -58,4 +44,12 @@ class NewsItem extends Component {
   }
 }
 
-export { NewsItem };
+const mapStateToProps = (state, ownProps) => ({
+  item: state.data.items[ownProps.id],
+});
+
+const mapDispatchToProps = {
+  fetchItem: fetchItemAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsItem);
