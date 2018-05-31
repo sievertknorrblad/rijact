@@ -37,6 +37,7 @@ const itemIdsReducer = (state = dataItemIdsInitialState, action) => {
       return state;
   }
 };
+
 const oneItemInitialState = { item: {}, isLoading: false, error: null };
 const itemsReducerInitialState = {};
 const itemsReducer = (state = itemsReducerInitialState, action) => {
@@ -66,7 +67,6 @@ const itemsReducer = (state = itemsReducerInitialState, action) => {
   }
 };
 
-
 const dataReducer = combineReducers({
   itemIds: itemIdsReducer,
   items: itemsReducer
@@ -81,26 +81,5 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   data: dataReducer,
 });
-
-
-// const fetchItem = id => {
-//   store.dispatch(requestItemStart());
-//   api.getItem(id)
-//     .then(item => {
-//       store.dispatch(requestItemSuccess(item));
-//     })
-//     .catch(err => {
-//       store.dispatch(requestItemFailure(err));
-//     });
-// };
-
-// const BASE_URL = "https://hacker-news.firebaseio.com";
-// const fetchJson = url => fetch(url).then(res => res.json());
-
-// const api = {
-//   getItem: id => fetchJson(`${BASE_URL}/v0/item/${id}.json`),
-// }
-
-// fetchItem(17132058)
 
 export default rootReducer;

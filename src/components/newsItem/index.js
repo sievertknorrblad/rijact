@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { distanceInWordsToNow } from 'date-fns';
 import './styles.css'
-import { fetchItem as fetchItemAction } from '../../actions';
+import * as actions from '../../actions';
 
 class NewsItem extends Component {
   
   componentDidMount() {
     const { fetchItem, id } = this.props
     fetchItem(id)
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.item !== nextProps.item
   }
 
   render() {
@@ -49,7 +45,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  fetchItem: fetchItemAction,
+  fetchItem: actions.fetchItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsItem);
