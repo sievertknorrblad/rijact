@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NewsItemList } from '../../components';
+import { NewsItemList } from '../';
 import { fetchItemsIds as fetchItemsIdsAction } from '../../actions';
 
 const isArraysEqual = (arr1, arr2) => arr1.toString() === arr2.toString();
