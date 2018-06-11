@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as actions from '../../actions';
 import './styles.css'
 
 const mainMenu = [
@@ -8,11 +10,18 @@ const mainMenu = [
     { text: 'Submit', url: 'https://news.ycombinator.com/submit' },
   ];
 
-export const Header = () => (
+const Header = ({ toggleTheme }) => (
   <div className="header">
     <Link to="/">
       <img src="https://news.ycombinator.com/y18.gif" alt="durov" />
     </Link>
     {mainMenu.map(item => (<a key={item.text} href={item.url}>{item.text}  </a>))}
+    <button onClick={e => toggleTheme()}>toggle the theme</button>
   </div>
 )
+
+const mapDispatchToProps = {
+  toggleTheme: actions.toggleTheme,
+};
+
+export default connect(null, mapDispatchToProps)(Header);

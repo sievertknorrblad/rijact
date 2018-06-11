@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsItem } from '../newsItem';
+import { NewsItem } from '../';
 import './styles.css'
 
 export const NewsItemList = ({ ids }) => (
