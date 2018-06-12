@@ -14,7 +14,7 @@ class NewsItem extends Component {
 
   render() {
     const { item } = this.props
-    if (item === undefined || !Object.keys(item).length || item.isLoading) {
+    if (item === undefined || !Object.keys(item).length) {
       return <div />
     }
     const actualTime = item.time * 1000
