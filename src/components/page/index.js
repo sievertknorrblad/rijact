@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css'
 import { connect } from 'react-redux';
+import * as ducks from '../../ducks';
 
 const Page = ({ children, darkTheme }) => (
   <div className={darkTheme ? "page page-dark": "page"}>      
@@ -9,7 +10,7 @@ const Page = ({ children, darkTheme }) => (
 )
 
 const mapStateToProps = state => ({
-  darkTheme: state.ui.isDarkTheme,
+  darkTheme: ducks.ui.selectors.isDarkTheme(state),
 })
 
 export default connect(mapStateToProps, null)(Page);

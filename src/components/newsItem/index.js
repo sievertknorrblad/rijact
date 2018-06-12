@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { distanceInWordsToNow } from 'date-fns';
 import './styles.css'
-import * as actions from '../../actions';
+import * as ducks from '../../ducks';
 
 class NewsItem extends Component {
   
@@ -14,25 +14,24 @@ class NewsItem extends Component {
 
   render() {
     const { item } = this.props
-    if (item === undefined || item.isLoading) {
+    if (item === undefined || !Object.keys(item).length || item.isLoading) {
       return <div />
     }
-    const fetchedItem = item.item
-    const actualTime = fetchedItem.time * 1000
+    const actualTime = item.time * 1000
     return (
       <div className="item-container">
-        <a className="title" href={fetchedItem.url}>
-          {fetchedItem.title}
+        <a className="title" href={item.url}>
+          {item.title}
         </a>
         <br />
-        <Link to={`/item/${fetchedItem.id}`}>
-          {fetchedItem.score} points
+        <Link to={`/item/${item.id}`}>
+          {item.score} points
         </Link>
         <span> by {item.by} {<time dateTime={new Date(actualTime)}>{distanceInWordsToNow(new Date(actualTime))}</time>} ago | </span>
-        <Link to={`/item/${fetchedItem.id}`}>
-          {fetchedItem.descendants === 0
+        <Link to={`/item/${item.id}`}>
+          {item.descendants === 0
             ? 'discuss'
-            : fetchedItem.descendants + ' comments'
+            : item.descendants + ' comments'
           }
         </Link>
       </div>
@@ -41,11 +40,11 @@ class NewsItem extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  item: state.data.items[ownProps.id],
+  item: ducks.data.selectors.items.item(state, ownProps.id),
 });
 
 const mapDispatchToProps = {
-  fetchItem: actions.fetchItem,
+  fetchItem: ducks.data.actions.fetchItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsItem);

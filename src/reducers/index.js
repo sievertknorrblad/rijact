@@ -67,12 +67,12 @@ const itemsReducer = (state = itemsReducerInitialState, action) => {
   }
 };
 
-const dataReducer = combineReducers({
+export const dataReducer = combineReducers({
   itemIds: itemIdsReducer,
   items: itemsReducer
 })
 
-const uiReducer = combineReducers({
+export const uiReducer = combineReducers({
   itemsToShow: itemsToShowReducer,
   isDarkTheme: isDarkThemeReducer,
 })
